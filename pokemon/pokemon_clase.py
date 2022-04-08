@@ -86,9 +86,12 @@ class Pokemon():
         
 
     def fight_defense(self,points_of_demage): 
-        self.point_of_demage = self.health_points - points_of_demage
-        self.health_points = self.point_of_demage
-        return self.health_points
+  
+        if self.defense_rating > points_of_demage:
+            return False
+        else:
+            self.point_of_demage = points_of_demage - self.defense_rating
+            self.health_points = self.health_points - self.point_of_demage
 
    
 #Repetir con todos los parámetros del constructor 
