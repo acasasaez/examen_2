@@ -55,14 +55,19 @@ def set_weapon_type(self, weapon_type):
     self.weapon_type = weapon_type
 
 def get_health_point (self):
+    return self.health_point
 def set_health_point(self, health_point):
+    self.health_point = health_point
 
 def get_attack_rating(self):
+    return self.attack_rating
 def set_attack_rating(self, attack_rating):
-
+    self.attack_rating = attack_rating
 
 def get_defense_rating(self):
-def set_defense_rating(self, defense_ratting):
+    return self.defense_rating
+def set_defense_rating(self, defense_rating):
+    self.defense_rating = defense_rating
 
 #Repetir con todos los parámetros del constructor 
 #Guardar en archivo .csv  que nos lo guardará en una tabla tipo excel 
