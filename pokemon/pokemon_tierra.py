@@ -1,4 +1,9 @@
-class PokemonEarth():
+from pokemon.pokemon_clase import Pokemon
+
+
+class PokemonEarth(Pokemon):
+    def __init__():
+        super().__init__()
     """Python class to implement a basic version of a Pokemon of the game.
 
     This Python class implements the basic version of a Pokemon of the game.
