@@ -38,37 +38,59 @@ class Pokemon():
         self.health_point = health_point
         self.attack_rating = attack_rating
         self.defense_rating = defense_rating
+    def show(self): 
+        print ("El nombre del pokemon es: ", self.pokemon_name)
+        print("El id del pokemon es:", self.id)
+        print("El tipo de arma del pokemon es: ", self.weapon_type)
+        print("Los puntos de salud del pokemon son: ", self.health_point)
+        print( "La puntuación de ataque es: ", self.attack_rating)
+        print("Los puntos de defensa son: ", self.defense_rating)
+    def get_id (self):
+        return self.id
+    def set_id (self,id):
+        self.id = id
 
-def get_id (self):
-    return self.id
-def set_id (self,id):
-    self.id = id
+    def get_name(self):
+        return self.pokemon_name
+    def set_name(self, pokemon_name):
+        self.pokemon_name =pokemon_name
 
-def get_name(self):
-    return self.pokemon_name
-def set_name(self, pokemon_name):
-    self.pokemon_name =pokemon_name
+    def get_weapon_type(self):
+        return self.weapon_type
+    def set_weapon_type(self, weapon_type):
+        self.weapon_type = weapon_type
 
-def get_weapon_type(self):
-    return self.weapon_type
-def set_weapon_type(self, weapon_type):
-    self.weapon_type = weapon_type
+    def get_health_point (self):
+        return self.health_point
+    def set_health_point(self, health_point):
+        self.health_point = health_point
 
-def get_health_point (self):
-    return self.health_point
-def set_health_point(self, health_point):
-    self.health_point = health_point
+    def get_attack_rating(self):
+        return self.attack_rating
+    def set_attack_rating(self, attack_rating):
+        self.attack_rating = attack_rating
 
-def get_attack_rating(self):
-    return self.attack_rating
-def set_attack_rating(self, attack_rating):
-    self.attack_rating = attack_rating
+    def get_defense_rating(self):
+        return self.defense_rating
+    def set_defense_rating(self, defense_rating):
+        self.defense_rating = defense_rating
+    
+    
+    def is_alive (self):
+        if self.health_point > 0:
+            return True 
+        else: 
+            return False
 
-def get_defense_rating(self):
-    return self.defense_rating
-def set_defense_rating(self, defense_rating):
-    self.defense_rating = defense_rating
+    def   fight_attack (self): 
+        
 
+    def fight_defense(self,points_of_demage): 
+        self.point_of_demage = self.health_points - points_of_demage
+        self.health_points = self.point_of_demage
+        return self.health_points
+
+   
 #Repetir con todos los parámetros del constructor 
 #Guardar en archivo .csv  que nos lo guardará en una tabla tipo excel 
 
