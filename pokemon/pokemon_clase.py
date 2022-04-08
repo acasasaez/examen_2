@@ -43,6 +43,27 @@ def get_id (self):
     return self.id
 def set_id (self,id):
     self.id = id
+
+def get_name(self):
+    return self.pokemon_name
+def set_name(self, pokemon_name):
+    self.pokemon_name =pokemon_name
+
+def get_weapon_type(self):
+    return self.weapon_type
+def set_weapon_type(self, weapon_type):
+    self.weapon_type = weapon_type
+
+def get_health_point (self):
+def set_health_point(self, health_point):
+
+def get_attack_rating(self):
+def set_attack_rating(self, attack_rating):
+
+
+def get_defense_rating(self):
+def set_defense_rating(self, defense_ratting):
+
 #Repetir con todos los parámetros del constructor 
 #Guardar en archivo .csv  que nos lo guardará en una tabla tipo excel 
 
