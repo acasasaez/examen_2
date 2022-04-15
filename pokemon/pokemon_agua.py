@@ -1,6 +1,7 @@
 from pokemon.pokemon_clase import Pokemon
 
 
+from tipo_arma import WeaponType
 class PokemonWater(Pokemon):
     def __init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating):
         super().__init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating)

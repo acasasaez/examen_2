@@ -1,9 +1,10 @@
 from pokemon.pokemon_clase import Pokemon
 
+from tipo_arma import WeaponType
 
 class PokemonEarth(Pokemon):
     def __init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating):
-        super().__init__()
+        super().__init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating)
         if isinstance(defense_rating, int):
             if 11 <= defense_rating <= 20:
                 self._defense_rating = defense_rating

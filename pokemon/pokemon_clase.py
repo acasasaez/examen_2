@@ -1,3 +1,5 @@
+
+from tipo_arma import WeaponType
 class Pokemon():
 
     def __init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating):

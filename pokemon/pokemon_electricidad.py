@@ -1,6 +1,5 @@
 
-
-
+from tipo_arma import WeaponType
 from pokemon.pokemon_clase import Pokemon
 import random
 
