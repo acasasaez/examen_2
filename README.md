@@ -27,7 +27,7 @@ Esto, más la clase de tipo de arma no sabía programarlas.
 
 Código: 
 
-MAIN: 
+# MAIN: 
 ```
 import csv
 import copy
@@ -534,7 +534,7 @@ if __name__ == "__main__":
 
 ```
 
-Clase Pokemon de Agua:
+# Clase Pokemon de Agua:
 ```
 from pokemon.pokemon_clase import Pokemon
 
@@ -679,7 +679,7 @@ if __name__ == "__main__":
     main()
 ```
 
-Clase Pokemon de Aire: 
+# Clase Pokemon de Aire: 
 ```
 from pokemon.pokemon_clase import Pokemon
 import random
@@ -831,7 +831,7 @@ if __name__ == "__main__":
     main()
 ```
 
-Clase del Pokemon Eléctrico: 
+# Clase del Pokemon Eléctrico: 
 ```
 from tipo_arma import WeaponType
 from pokemon.pokemon_clase import Pokemon
@@ -986,7 +986,7 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-Clase Pokemon de Tierra: 
+# Clase Pokemon de Tierra: 
 ```
 from pokemon.pokemon_clase import Pokemon
 
@@ -1126,17 +1126,15 @@ def main():
 
 
 
-# Checking whether this module is executed just itself alone.
+#Checking whether this module is executed just itself alone.
 if __name__ == "__main__":
     main()
 
 ```
 
 
-# EOF
-```
 
-Clase Tipo de Arma: 
+# Clase Tipo de Arma: 
 ```
 from enum import Enum
 
@@ -1280,9 +1278,28 @@ def main():
         print("Test FAIL. Check the method __init__().")
 
 
-# Checking whether this module is executed just itself alone.
+ #Checking whether this module is executed just itself alone.
 if __name__ == "__main__":
     main()
 
 
 ```
+
+
+# ARCHIVOS CSV 
+
+  # Archivo 1:
+  
+    ```
+    11,Pikachu,headbutt,69,8,8
+    12,Pidgey,kick,85,7,7
+    13,Squirtle,elbow,74,7,6
+    ```
+    
+   # Archivo 2: 
+   
+   ```
+    24,Diglett,punch,82,9,7
+    25,Venusaur,kick,78,8,6
+    26,Charmeleon,elbow,88,9,7
+    ```
