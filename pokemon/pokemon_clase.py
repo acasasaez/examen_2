@@ -122,7 +122,9 @@ class Pokemon():
             return False
         else:
             self.point_of_demage = points_of_demage - self.defense_rating
-            self.health_points = self.health_points - self.point_of_demage
+            self.health_point = self.health_point - self.point_of_demage
+            print( "Puntos de salud: ", self.health_point)
+            return True
 
    
 #Repetir con todos los parámetros del constructor 

@@ -1,42 +1,20 @@
 from pokemon.pokemon_clase import Pokemon
-
+import random
 
 class PokemonAir(Pokemon):
-    def __init__():
-        super().__init__()
-    """Python class to implement a basic version of a Pokemon of the game.
-
-    This Python class implements the basic version of a Pokemon of the game.
-
-    Syntax
-    ------
-      obj = PokemonAir(id, pokemon_name, weapon_type, health_points,
-                         attack_rating, defense_rating)
-
-    Parameters
-    ----------
-      [in] id ID of the Pokemon.
-      [in] pokemon_name Name of the Pokemon.
-      [in] weapon_type Type of weapon that carries out the Pokemon.
-      [in] health_points Points of health that the Pokemon has.
-      [in] attack_rating Attack rating of the Pokemon.
-      [in] defense_rating Defense rating of the Pokemon.
-
-    Returns
-    -------
-      obj Python object output parameter that represents an instance
-          of the class Pokemon.
-
-    Attributes
-    ----------
-
-    Example
-    -------
-      >>> from pokemon import Pokemon
-      >>> from weapon_type import WeaponType
-      >>> obj_Pokemon = PokemonEarth(1, "Pidgey", WeaponType.PUNCH, 100, 7, 10)
-    """
-
+    def __init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating):
+        super().__init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating)
+    
+    def fight_defense(self,points_of_demage): 
+        porcentaje_aumentado = random.randint(0,50)/100
+        self.defense_rating = self.defense_rating + self.defense_rating*porcentaje_aumentado
+        if self.defense_rating > points_of_demage:
+            return False
+        else:
+            self.point_of_demage = points_of_demage - self.defense_rating
+            self.health_point = self.health_point - self.point_of_demage
+            print( "Puntos de salud: ", self.health_point)
+            return True
 
 def main():
     """Function main of the module.

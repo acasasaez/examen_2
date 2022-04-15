@@ -2,24 +2,24 @@ from pokemon.pokemon_clase import Pokemon
 
 
 class PokemonWater(Pokemon):
-    def __init__():
-        super().__init__()
-        if isinstance(defense_rating, int):
-            if 11 <= defense_rating <= 20:
-                self._defense_rating = defense_rating
-            else:
-                raise ValueError(" defense_rating debe ser superior o igual a 11 y menor o igual a  20.")
+    def __init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating):
+        super().__init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating)
+        if isinstance(attack_rating, int):
+                if 11 <= attack_rating <= 20:
+                    self._attack_rating = attack_rating
+                else:
+                    raise ValueError(" attack_rating debeser superior o igual a 11 e inferior o igual a 20.")
         else:
-            raise TypeError(" defense_rating es un parámtro tipo Int.")
-    def set_defense_rating(self, defense_rating):
-        if isinstance(defense_rating, int):
-            if 11 <= defense_rating <= 20:
-                self._defense_rating = defense_rating
+                raise TypeError("attack_rating es un parámetro tipo Int.")
+        
+    def set_attack_rating(self, attack_rating):
+        if isinstance(attack_rating, int):
+            if 11 <= attack_rating <= 20:
+                self._attack_rating = attack_rating
             else:
-                raise ValueError(" defense_rating debe ser superior o igual a 11 y menor o igual a  20.")
+                raise ValueError(" attack_rating debeser superior o igual a 11  e inferior o igual a 20.")
         else:
-            raise TypeError(" defense_rating es un parámtro tipo Int.")
-
+            raise TypeError("attack_rating es un parámetro tipo Int.")
 def main():
     """Function main of the module.
 
