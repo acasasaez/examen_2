@@ -2,45 +2,25 @@
 
 
 from pokemon.pokemon_clase import Pokemon
-
+import random
 
 class PokemonElectricity(Pokemon):
-    def __init__():
-        super().__init__()
-    """Python class to implement a basic version of a Pokemon of the game.
+    def __init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating):
+        super().__init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating)
+ 
+    def   fight_attack (self, pokemon_to_attack):
+        numero = random.randint(0,1)
+        if numero == 0:
+            points_of_damage = self._attack_rating
+        if numero ==1:
+            points_of_damage = self._attack_rating*2  
+        print("The Pokemon " + self._pokemon_name +
+              " hits the Pokemon " + pokemon_to_attack.get_pokemon_name() +
+              " with " + str(points_of_damage) + " points of damage!")
 
-    This Python class implements the basic version of a Pokemon of the game.
+        pokemon_was_hit = pokemon_to_attack.fight_defense(points_of_damage)
 
-    Syntax
-    ------
-      obj = PokemonElectricity(id, pokemon_name, weapon_type, health_points,
-                         attack_rating, defense_rating)
-
-    Parameters
-    ----------
-      [in] id ID of the Pokemon.
-      [in] pokemon_name Name of the Pokemon.
-      [in] weapon_type Type of weapon that carries out the Pokemon.
-      [in] health_points Points of health that the Pokemon has.
-      [in] attack_rating Attack rating of the Pokemon.
-      [in] defense_rating Defense rating of the Pokemon.
-
-    Returns
-    -------
-      obj Python object output parameter that represents an instance
-          of the class Pokemon.
-
-    Attributes
-    ----------
-
-    Example
-    -------
-      >>> from pokemon import Pokemon
-      >>> from weapon_type import WeaponType
-      >>> obj_Pokemon = PokemonEarth(1, "Pikachu", WeaponType.PUNCH, 100, 7, 10)
-    """
-
-
+        return pokemon_was_hit
 
 def main():
     """Function main of the module.

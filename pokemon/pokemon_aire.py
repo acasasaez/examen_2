@@ -6,9 +6,9 @@ class PokemonAir(Pokemon):
         super().__init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating)
     
     def fight_defense(self,points_of_demage): 
-        porcentaje_aumentado = random.randint(0,50)/100
+        numero = random.randint (0,1)
         self.defense_rating = self.defense_rating + self.defense_rating*porcentaje_aumentado
-        if self.defense_rating > points_of_demage:
+        if self.defense_rating > points_of_demage or numero == 1:
             return False
         else:
             self.point_of_demage = points_of_demage - self.defense_rating
