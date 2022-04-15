@@ -82,7 +82,18 @@ class Pokemon():
         else: 
             return False
 
-    def   fight_attack (self): 
+    def   fight_attack (self, pokemon_to_attack):
+
+        points_of_damage = self._attack_rating
+
+        print("The Pokemon " + self._pokemon_name +
+              " hits the Pokemon " + pokemon_to_attack.get_pokemon_name() +
+              " with " + str(points_of_damage) + " points of damage!")
+
+        pokemon_was_hit = pokemon_to_attack.fight_defense(points_of_damage)
+
+        return pokemon_was_hit
+ 
         
 
     def fight_defense(self,points_of_demage): 
