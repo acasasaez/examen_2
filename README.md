@@ -26,6 +26,7 @@ Además, las características de cada grupo de pokemons se introducen a través 
 Esto, más la clase de tipo de arma no sabía programarlas. 
 
 Código: 
+
 MAIN: 
 ```
 import csv
@@ -269,3 +270,1019 @@ def main():
 # Checking whether this module is executed just itself alone.
 if __name__ == "__main__":
     main()
+```
+
+Clase Pokemon: 
+
+```
+
+from tipo_arma import WeaponType
+class Pokemon():
+
+    def __init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating):
+        self.id = id 
+        if isinstance(pokemon_name, str):
+            self._pokemon_name = pokemon_name
+        else:
+            raise TypeError("pokemon_name es un parámetro tipo Str.")
+
+        if isinstance(weapon_type, WeaponType):
+            self._weapon_type = weapon_type
+        else:
+            raise TypeError("weapon_type es un parámetro tipo WeaponType.")
+
+        if isinstance(health_point, int):
+            if 1 <= health_point <= 100:
+                self._health_points = health_point
+            else:
+                raise ValueError(" health_point debeser superir a  0 y menor o igual a 100.")
+        else:
+            raise TypeError("health_point debe ser un parámetro tipo Int.")
+
+        if isinstance(attack_rating, int):
+            if 1 <= attack_rating <= 10:
+                self._attack_rating = attack_rating
+            else:
+                raise ValueError(" attack_rating debeser superior a 0 e inferior o igual a 10.")
+        else:
+            raise TypeError("attack_rating es un parámetro tipo Int.")
+
+        if isinstance(defense_rating, int):
+            if 1 <= defense_rating <= 10:
+                self._defense_rating = defense_rating
+            else:
+                raise ValueError(" defense_rating debe ser superior 0 y menor o igual a  10.")
+        else:
+            raise TypeError(" defense_rating es un parámtro tipo Int.")
+    def show(self): 
+        print ("El nombre del pokemon es: ", self.pokemon_name)
+        print("El id del pokemon es:", self.id)
+        print("El tipo de arma del pokemon es: ", self.weapon_type)
+        print("Los puntos de salud del pokemon son: ", self.health_point)
+        print( "La puntuación de ataque es: ", self.attack_rating)
+        print("Los puntos de defensa son: ", self.defense_rating)
+    def get_id (self):
+        return self.id
+    def set_id (self,id):
+        self.id = id
+
+    def get_name(self):
+        return self.pokemon_name
+    def set_name(self, pokemon_name):
+        if isinstance(pokemon_name, str):
+            self._pokemon_name = pokemon_name
+        else:
+            raise TypeError("pokemon_name es un parámetro tipo Str.")
+
+    def get_weapon_type(self):
+        return self.weapon_type
+    def set_weapon_type(self, weapon_type):
+        if isinstance(weapon_type, WeaponType):
+            self._weapon_type = weapon_type
+        else:
+            raise TypeError("weapon_type es un parámetro tipo WeaponType.")
+
+    def get_health_point (self):
+        return self.health_point
+    def set_health_point(self, health_point):
+        if isinstance(health_point, int):
+            if 1 <= health_point <= 100:
+                self._health_points = health_point
+            else:
+                raise ValueError(" health_point debeser superir a  0 y menor o igual a 100.")
+        else:
+            raise TypeError("health_point debe ser un parámetro tipo Int.")
+    def get_attack_rating(self):
+        return self.attack_rating
+    def set_attack_rating(self, attack_rating):
+        if isinstance(attack_rating, int):
+            if 1 <= attack_rating <= 10:
+                self._attack_rating = attack_rating
+            else:
+                raise ValueError(" attack_rating debeser superior a 0 e inferior o igual a 10.")
+        else:
+            raise TypeError("attack_rating es un parámetro tipo Int.")
+
+    def get_defense_rating(self):
+        return self.defense_rating
+    def set_defense_rating(self, defense_rating):
+        if isinstance(defense_rating, int):
+            if 1 <= defense_rating <= 10:
+                self._defense_rating = defense_rating
+            else:
+                raise ValueError(" defense_rating debe ser superior 0 y menor o igual a  10.")
+        else:
+            raise TypeError(" defense_rating es un parámtro tipo Int.")
+    
+    
+    def is_alive (self):
+        if self.health_point > 0:
+            return True 
+        else: 
+            return False
+
+    def   fight_attack (self, pokemon_to_attack):
+
+        points_of_damage = self._attack_rating
+
+        print("The Pokemon " + self._pokemon_name +
+              " hits the Pokemon " + pokemon_to_attack.get_pokemon_name() +
+              " with " + str(points_of_damage) + " points of damage!")
+
+        pokemon_was_hit = pokemon_to_attack.fight_defense(points_of_damage)
+
+        return pokemon_was_hit
+ 
+        
+
+    def fight_defense(self,points_of_demage): 
+  
+        if self.defense_rating > points_of_demage:
+            return False
+        else:
+            self.point_of_demage = points_of_demage - self.defense_rating
+            self.health_point = self.health_point - self.point_of_demage
+            print( "Puntos de salud: ", self.health_point)
+            return True
+
+   
+#Repetir con todos los parámetros del constructor 
+#Guardar en archivo .csv  que nos lo guardará en una tabla tipo excel 
+
+
+
+
+def main():
+    """Function main of the module.
+
+    The function main of this module is used to test the Class that is described
+    in this module.
+
+    Syntax
+    ------
+      [ ] = main()
+
+    Parameters
+    ----------
+      Null .
+
+    Returns
+    -------
+      Null .
+
+    Example
+    -------
+      >>> main()
+    """
+
+    print("=================================================================.")
+    print("Test Case 1: Create a Pokemon.")
+    print("=================================================================.")
+    pokemon_1 = Pokemon(1, "Ivysaur", WeaponType.HEADBUTT, 100, 8, 9)
+
+    if pokemon_1.get_pokemon_name() == "Ivysaur":
+        print("Test PASS. The parameter pokemon_name has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if pokemon_1.get_weapon_type().name == "HEADBUTT":
+        print("Test PASS. The parameter weapon_type has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if pokemon_1.get_health_points() == 100:
+        print("Test PASS. The parameter health_points has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if pokemon_1.get_attack_rating() == 8:
+        print("Test PASS. The parameter attack_rating has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if pokemon_1.get_defense_rating() == 9:
+        print("Test PASS. The parameter defense_rating has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+
+    print("=================================================================.")
+    print("Test Case 2: Human-readable format of the object.")
+    print("=================================================================.")
+    pokemon_2 = Pokemon(2, "Charmander", WeaponType.HEADBUTT, 100, 7, 10)
+
+    if str(pokemon_2) == "Pokemon ID 2 with name Charmander has as weapon HEADBUTT and health 100":
+        print("Test PASS. The human-readable format of the object has been implemented correctly.")
+    else:
+        print("Test FAIL. Check the method __str__()." + " RESULT: " + str(pokemon_2))
+
+
+    print("=================================================================.")
+    print("Test Case 3: Pokemon alive?¿?.")
+    print("=================================================================.")
+    pokemon_3 = Pokemon(3, "Wartortle", WeaponType.KICK, 97, 8, 9)
+
+    if pokemon_3.is_alive():
+        pokemon_3.fight_defense(200)  # With this the Pokemon should be retired.
+
+        if not pokemon_3.is_alive():
+            print("Test PASS. The method is_alive() has been implemented correctly.")
+        else:
+            print("Test FAIL. Check the method is_alive().")
+    else:
+        print("Test FAIL. Check the method is_alive().")
+
+
+    print("=================================================================.")
+    print("Test Case 4: Check the defense during a Fight.")
+    print("=================================================================.")
+    pokemon_4 = Pokemon(4, "Squirtle", WeaponType.ELBOW, 93, 9, 6)
+
+    pokemon_4.fight_defense(70)
+
+    if pokemon_4.get_health_points() == 29:
+        print("Test PASS. The method fight_defense() has been implemented correctly.")
+    else:
+        print("Test FAIL. Check the method fight_defense().")
+
+
+    print("=================================================================.")
+    print("Test Case 5: Check the attack during a Fight.")
+    print("=================================================================.")
+    pokemon_5 = Pokemon(5, "Venusaur", WeaponType.PUNCH, 99, 10, 7)
+    pokemon_6 = Pokemon(6, "Charmeleon", WeaponType.PUNCH, 99, 9, 8)
+
+    pokemon_was_hit = pokemon_5.fight_attack(pokemon_6)
+
+    if pokemon_was_hit:
+        if pokemon_6.get_health_points() == 97:
+            print("Test PASS. The method fight_attack() has been implemented correctly.")
+        else:
+            print("Test FAIL. Check the method fight_attack().")
+    else:
+        if pokemon_6.get_health_points() == 99:
+            print("Test PASS. The method fight_attack() has been implemented correctly.")
+        else:
+            print("Test FAIL. Check the method fight_attack().")
+
+
+
+# Checking whether this module is executed just itself alone.
+if __name__ == "__main__":
+    main()
+
+
+```
+
+Clase Pokemon de Agua:
+```
+from pokemon.pokemon_clase import Pokemon
+
+
+from tipo_arma import WeaponType
+class PokemonWater(Pokemon):
+    def __init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating):
+        super().__init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating)
+        if isinstance(attack_rating, int):
+                if 11 <= attack_rating <= 20:
+                    self._attack_rating = attack_rating
+                else:
+                    raise ValueError(" attack_rating debeser superior o igual a 11 e inferior o igual a 20.")
+        else:
+                raise TypeError("attack_rating es un parámetro tipo Int.")
+        
+    def set_attack_rating(self, attack_rating):
+        if isinstance(attack_rating, int):
+            if 11 <= attack_rating <= 20:
+                self._attack_rating = attack_rating
+            else:
+                raise ValueError(" attack_rating debeser superior o igual a 11  e inferior o igual a 20.")
+        else:
+            raise TypeError("attack_rating es un parámetro tipo Int.")
+def main():
+    """Function main of the module.
+
+    The function main of this module is used to test the Class that is described
+    in this module.
+
+    Syntax
+    ------
+      [ ] = main()
+
+    Parameters
+    ----------
+      Null .
+
+    Returns
+    -------
+      Null .
+
+    Example
+    -------
+      >>> main()
+    """
+
+    print("=================================================================.")
+    print("Test Case 1: Create a Pokemon.")
+    print("=================================================================.")
+    pokemon_1 = PokemonWater(1, "Squirtle", WeaponType.HEADBUTT, 100, 12, 8)
+
+    if pokemon_1.get_pokemon_name() == "Squirtle":
+        print("Test PASS. The parameter pokemon_name has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if pokemon_1.get_weapon_type().name == "HEADBUTT":
+        print("Test PASS. The parameter weapon_type has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if pokemon_1.get_health_points() == 100:
+        print("Test PASS. The parameter health_points has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if pokemon_1.get_attack_rating() == 12:
+        print("Test PASS. The parameter attack_rating has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if pokemon_1.get_defense_rating() == 8:
+        print("Test PASS. The parameter defense_rating has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+
+    print("=================================================================.")
+    print("Test Case 2: Human-readable format of the object.")
+    print("=================================================================.")
+    pokemon_2 = PokemonWater(7, "Squirtle", WeaponType.HEADBUTT, 100,15, 7)
+
+    if str(pokemon_2) == "Pokemon ID 7 with name Squirtle has as weapon HEADBUTT and health 100":
+        print("Test PASS. The human-readable format of the object has been implemented correctly.")
+    else:
+        print("Test FAIL. Check the method __str__()." + " RESULT: " + str(pokemon_2))
+
+
+    print("=================================================================.")
+    print("Test Case 3: Pokemon alive?¿?.")
+    print("=================================================================.")
+    pokemon_3 = PokemonWater(3, "Squirtle", WeaponType.KICK, 97, 15, 8)
+
+    if pokemon_3.is_alive():
+        pokemon_3.fight_defense(200)  # With this the Pokemon should be retired.
+
+        if not pokemon_3.is_alive():
+            print("Test PASS. The method is_alive() has been implemented correctly.")
+        else:
+            print("Test FAIL. Check the method is_alive().")
+    else:
+        print("Test FAIL. Check the method is_alive().")
+
+
+    print("=================================================================.")
+    print("Test Case 4: Check the defense during a Fight.")
+    print("=================================================================.")
+    pokemon_4 = PokemonWater(4, "Squirtle", WeaponType.ELBOW, 93, 11, 9)
+
+    pokemon_4.fight_defense(70)
+
+    if pokemon_4.get_health_points() == 32:
+        print("Test PASS. The method fight_defense() has been implemented correctly.")
+    else:
+        print("Test FAIL. Check the method fight_defense().")
+
+
+    print("=================================================================.")
+    print("Test Case 5: Check the attack during a Fight.")
+    print("=================================================================.")
+    pokemon_5 = PokemonWater(5, "Squirtle", WeaponType.PUNCH, 99, 20, 10)
+    pokemon_6 = PokemonWater(6, "Squirtle", WeaponType.PUNCH, 99, 18, 9)
+
+    pokemon_was_hit = pokemon_5.fight_attack(pokemon_6)
+
+    if pokemon_was_hit:
+        if pokemon_6.get_health_points() == 88:
+            print("Test PASS. The method fight_attack() has been implemented correctly.")
+        else:
+            print("Test FAIL. Check the method fight_attack().")
+    else:
+        if pokemon_6.get_health_points() == 99:
+            print("Test PASS. The method fight_attack() has been implemented correctly.")
+        else:
+            print("Test FAIL. Check the method fight_attack().")
+
+
+
+# Checking whether this module is executed just itself alone.
+if __name__ == "__main__":
+    main()
+```
+
+Clase Pokemon de Aire: 
+```
+from pokemon.pokemon_clase import Pokemon
+import random
+from tipo_arma import WeaponType
+class PokemonAir(Pokemon):
+    def __init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating):
+        super().__init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating)
+    
+    def fight_defense(self,points_of_demage): 
+        numero = random.randint (0,1)
+        if self.defense_rating > points_of_demage or numero == 1:
+            return False
+        else:
+            self.point_of_demage = points_of_demage - self.defense_rating
+            self.health_point = self.health_point - self.point_of_demage
+            print( "Puntos de salud: ", self.health_point)
+            return True
+
+def main():
+    """Function main of the module.
+
+    The function main of this module is used to test the Class that is described
+    in this module.
+
+    Syntax
+    ------
+      [ ] = main()
+
+    Parameters
+    ----------
+      Null .
+
+    Returns
+    -------
+      Null .
+
+    Example
+    -------
+      >>> main()
+    """
+
+    print("=================================================================.")
+    print("Test Case 1: Create a Pokemon.")
+    print("=================================================================.")
+    pokemon_1 = PokemonAir(1, "Pidgey", WeaponType.HEADBUTT, 100, 8, 7)
+
+    if pokemon_1.get_pokemon_name() == "Pidgey":
+        print("Test PASS. The parameter pokemon_name has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if pokemon_1.get_weapon_type().name == "HEADBUTT":
+        print("Test PASS. The parameter weapon_type has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if pokemon_1.get_health_points() == 100:
+        print("Test PASS. The parameter health_points has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if pokemon_1.get_attack_rating() == 8:
+        print("Test PASS. The parameter attack_rating has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if pokemon_1.get_defense_rating() == 7:
+        print("Test PASS. The parameter defense_rating has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+
+    print("=================================================================.")
+    print("Test Case 2: Human-readable format of the object.")
+    print("=================================================================.")
+    pokemon_2 = PokemonAir(7, "Pidgey", WeaponType.HEADBUTT, 100, 7, 6)
+
+    if str(pokemon_2) == "Pokemon ID 7 with name Pidgey has as weapon HEADBUTT and health 100":
+        print("Test PASS. The human-readable format of the object has been implemented correctly.")
+    else:
+        print("Test FAIL. Check the method __str__()." + " RESULT: " + str(pokemon_2))
+
+
+    print("=================================================================.")
+    print("Test Case 3: Pokemon alive?¿?.")
+    print("=================================================================.")
+    pokemon_3 = PokemonAir(3, "Pidgey", WeaponType.KICK, 97, 8, 7)
+
+    if pokemon_3.is_alive():
+        pokemon_was_hit = pokemon_3.fight_defense(200)  # With this the Pokemon should be retired.
+
+        if pokemon_was_hit:
+            if not pokemon_3.is_alive():
+                print("Test PASS. The method is_alive() has been implemented correctly.")
+            else:
+                print("Test FAIL. Check the method is_alive().")
+        else:
+            if pokemon_3.is_alive():
+                print("Test PASS. The method is_alive() has been implemented correctly.")
+            else:
+                print("Test FAIL. Check the method is_alive().")
+            
+    else:
+        print("Test FAIL. Check the method is_alive().")
+
+
+    print("=================================================================.")
+    print("Test Case 4: Check the defense during a Fight.")
+    print("=================================================================.")
+    pokemon_4 = PokemonAir(4, "Pidgey", WeaponType.ELBOW, 93, 9, 5)
+
+    pokemon_was_hit = pokemon_4.fight_defense(70)
+
+    if pokemon_was_hit:
+        if pokemon_4.get_health_points() == 28:
+            print("Test PASS. The method fight_defense() has been implemented correctly.")
+        else:
+            print("Test FAIL. Check the method fight_defense().")
+    else:
+        if pokemon_4.get_health_points() == 93:
+            print("Test PASS. The method fight_defense() has been implemented correctly.")
+        else:
+            print("Test FAIL. Check the method fight_defense().")
+
+
+    print("=================================================================.")
+    print("Test Case 5: Check the attack during a Fight.")
+    print("=================================================================.")
+    pokemon_5 = PokemonAir(5, "Pidgey", WeaponType.PUNCH, 99, 10, 8)
+    pokemon_6 = PokemonAir(6, "Pidgey", WeaponType.PUNCH, 99, 9, 6)
+
+    pokemon_was_hit = pokemon_5.fight_attack(pokemon_6)
+
+    if pokemon_was_hit:
+        if pokemon_6.get_health_points() == 95:
+            print("Test PASS. The method fight_attack() has been implemented correctly.")
+        else:
+            print("Test FAIL. Check the method fight_attack().")
+    else:
+        if pokemon_6.get_health_points() == 99:
+            print("Test PASS. The method fight_attack() has been implemented correctly.")
+        else:
+            print("Test FAIL. Check the method fight_attack().")
+
+
+
+# Checking whether this module is executed just itself alone.
+if __name__ == "__main__":
+    main()
+```
+
+Clase del Pokemon Eléctrico: 
+```
+from tipo_arma import WeaponType
+from pokemon.pokemon_clase import Pokemon
+import random
+
+class PokemonElectricity(Pokemon):
+    def __init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating):
+        super().__init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating)
+ 
+    def   fight_attack (self, pokemon_to_attack):
+        numero = random.randint(0,1)
+        if numero == 0:
+            points_of_damage = self._attack_rating
+        if numero ==1:
+            points_of_damage = self._attack_rating*2  
+        print("The Pokemon " + self._pokemon_name +
+              " hits the Pokemon " + pokemon_to_attack.get_pokemon_name() +
+              " with " + str(points_of_damage) + " points of damage!")
+
+        pokemon_was_hit = pokemon_to_attack.fight_defense(points_of_damage)
+
+        return pokemon_was_hit
+
+def main():
+    """Function main of the module.
+
+    The function main of this module is used to test the Class that is described
+    in this module.
+
+    Syntax
+    ------
+      [ ] = main()
+
+    Parameters
+    ----------
+      Null .
+
+    Returns
+    -------
+      Null .
+
+    Example
+    -------
+      >>> main()
+    """
+
+    print("=================================================================.")
+    print("Test Case 1: Create a Pokemon.")
+    print("=================================================================.")
+    pokemon_1 = PokemonElectricity(1, "Pikachu", WeaponType.HEADBUTT, 100, 8, 7)
+
+    if pokemon_1.get_pokemon_name() == "Pikachu":
+        print("Test PASS. The parameter pokemon_name has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if pokemon_1.get_weapon_type().name == "HEADBUTT":
+        print("Test PASS. The parameter weapon_type has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if pokemon_1.get_health_points() == 100:
+        print("Test PASS. The parameter health_points has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if pokemon_1.get_attack_rating() == 8:
+        print("Test PASS. The parameter attack_rating has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if pokemon_1.get_defense_rating() == 7:
+        print("Test PASS. The parameter defense_rating has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+
+    print("=================================================================.")
+    print("Test Case 2: Human-readable format of the object.")
+    print("=================================================================.")
+    pokemon_2 = PokemonElectricity(7, "Pikachu", WeaponType.HEADBUTT, 100, 7, 6)
+
+    if str(pokemon_2) == "Pokemon ID 7 with name Pikachu has as weapon HEADBUTT and health 100":
+        print("Test PASS. The human-readable format of the object has been implemented correctly.")
+    else:
+        print("Test FAIL. Check the method __str__()." + " RESULT: " + str(pokemon_2))
+
+
+    print("=================================================================.")
+    print("Test Case 3: Pokemon alive?¿?.")
+    print("=================================================================.")
+    pokemon_3 = PokemonElectricity(3, "Pikachu", WeaponType.KICK, 97, 8, 7)
+
+    if pokemon_3.is_alive():
+        pokemon_was_hit = pokemon_3.fight_defense(200)  # With this the Pokemon should be retired.
+
+        if pokemon_was_hit:
+            if not pokemon_3.is_alive():
+                print("Test PASS. The method is_alive() has been implemented correctly.")
+            else:
+                print("Test FAIL. Check the method is_alive().")
+        else:
+            if pokemon_3.is_alive():
+                print("Test PASS. The method is_alive() has been implemented correctly.")
+            else:
+                print("Test FAIL. Check the method is_alive().")
+    else:
+        print("Test FAIL. Check the method is_alive().")
+
+
+    print("=================================================================.")
+    print("Test Case 4: Check the defense during a Fight.")
+    print("=================================================================.")
+    pokemon_4 = PokemonElectricity(4, "Pikachu", WeaponType.ELBOW, 93, 9, 5)
+
+    pokemon_was_hit = pokemon_4.fight_defense(70)
+
+    if pokemon_was_hit:
+        if pokemon_4.get_health_points() == 28:
+            print("Test PASS. The method fight_defense() has been implemented correctly.")
+        else:
+            print("Test FAIL. Check the method fight_defense().")
+    else:
+        if pokemon_4.get_health_points() == 93:
+            print("Test PASS. The method fight_defense() has been implemented correctly.")
+        else:
+            print("Test FAIL. Check the method fight_defense().")
+
+
+    print("=================================================================.")
+    print("Test Case 5: Check the attack during a Fight.")
+    print("=================================================================.")
+    pokemon_5 = PokemonElectricity(5, "Pikachu", WeaponType.PUNCH, 99, 10, 8)
+    pokemon_6 = PokemonElectricity(6, "Pikachu", WeaponType.PUNCH, 99, 9, 6)
+
+    pokemon_was_hit = pokemon_5.fight_attack(pokemon_6)
+
+    if pokemon_was_hit:
+        if (pokemon_6.get_health_points() == 95) or (pokemon_6.get_health_points() == 85):
+            print("Test PASS. The method fight_attack() has been implemented correctly.")
+        else:
+            print("Test FAIL. Check the method fight_attack().")
+    else:
+        if pokemon_6.get_health_points() == 99:
+            print("Test PASS. The method fight_attack() has been implemented correctly.")
+        else:
+            print("Test FAIL. Check the method fight_attack().")
+
+
+
+# Checking whether this module is executed just itself alone.
+if __name__ == "__main__":
+    main()
+```
+Clase Pokemon de Tierra: 
+```
+from pokemon.pokemon_clase import Pokemon
+
+from tipo_arma import WeaponType
+
+class PokemonEarth(Pokemon):
+    def __init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating):
+        super().__init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating)
+        if isinstance(defense_rating, int):
+            if 11 <= defense_rating <= 20:
+                self._defense_rating = defense_rating
+            else:
+                raise ValueError(" defense_rating debe ser superior o igual a 11 y menor o igual a  20.")
+        else:
+            raise TypeError(" defense_rating es un parámtro tipo Int.")
+    def set_defense_rating(self, defense_rating):
+        if isinstance(defense_rating, int):
+            if 11 <= defense_rating <= 20:
+                self._defense_rating = defense_rating
+            else:
+                raise ValueError(" defense_rating debe ser superior o igual a 11 y menor o igual a  20.")
+        else:
+            raise TypeError(" defense_rating es un parámtro tipo Int.")
+
+def main():
+    """Function main of the module.
+
+    The function main of this module is used to test the Class that is described
+    in this module.
+
+    Syntax
+    ------
+      [ ] = main()
+
+    Parameters
+    ----------
+      Null .
+
+    Returns
+    -------
+      Null .
+
+    Example
+    -------
+      >>> main()
+    """
+
+    print("=================================================================.")
+    print("Test Case 1: Create a Pokemon.")
+    print("=================================================================.")
+    pokemon_1 = PokemonEarth(1, "Diglett", WeaponType.HEADBUTT, 100, 8, 15)
+
+    if pokemon_1.get_pokemon_name() == "Diglett":
+        print("Test PASS. The parameter pokemon_name has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if pokemon_1.get_weapon_type().name == "HEADBUTT":
+        print("Test PASS. The parameter weapon_type has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if pokemon_1.get_health_points() == 100:
+        print("Test PASS. The parameter health_points has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if pokemon_1.get_attack_rating() == 8:
+        print("Test PASS. The parameter attack_rating has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if pokemon_1.get_defense_rating() == 15:
+        print("Test PASS. The parameter defense_rating has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+
+    print("=================================================================.")
+    print("Test Case 2: Human-readable format of the object.")
+    print("=================================================================.")
+    pokemon_2 = PokemonEarth(7, "Diglett", WeaponType.HEADBUTT, 100, 7, 12)
+
+    if str(pokemon_2) == "Pokemon ID 7 with name Diglett has as weapon HEADBUTT and health 100":
+        print("Test PASS. The human-readable format of the object has been implemented correctly.")
+    else:
+        print("Test FAIL. Check the method __str__()." + " RESULT: " + str(pokemon_2))
+
+
+    print("=================================================================.")
+    print("Test Case 3: Pokemon alive?¿?.")
+    print("=================================================================.")
+    pokemon_3 = PokemonEarth(3, "Diglett", WeaponType.KICK, 97, 8, 15)
+
+    if pokemon_3.is_alive():
+        pokemon_3.fight_defense(200)  # With this the Pokemon should be retired.
+
+        if not pokemon_3.is_alive():
+            print("Test PASS. The method is_alive() has been implemented correctly.")
+        else:
+            print("Test FAIL. Check the method is_alive().")
+    else:
+        print("Test FAIL. Check the method is_alive().")
+
+
+    print("=================================================================.")
+    print("Test Case 4: Check the defense during a Fight.")
+    print("=================================================================.")
+    pokemon_4 = PokemonEarth(4, "Diglett", WeaponType.ELBOW, 93, 9, 11)
+
+    pokemon_4.fight_defense(70)
+
+    if pokemon_4.get_health_points() == 34:
+        print("Test PASS. The method fight_defense() has been implemented correctly.")
+    else:
+        print("Test FAIL. Check the method fight_defense().")
+
+
+    print("=================================================================.")
+    print("Test Case 5: Check the attack during a Fight.")
+    print("=================================================================.")
+    pokemon_5 = PokemonEarth(5, "Diglett", WeaponType.PUNCH, 99, 10, 20)
+    pokemon_6 = PokemonEarth(6, "Diglett", WeaponType.PUNCH, 99, 9, 18)
+
+    pokemon_was_hit = pokemon_5.fight_attack(pokemon_6)
+
+    if pokemon_was_hit:
+        if pokemon_6.get_health_points() == 97:
+            print("Test PASS. The method fight_attack() has been implemented correctly.")
+        else:
+            print("Test FAIL. Check the method fight_attack().")
+    else:
+        if pokemon_6.get_health_points() == 99:
+            print("Test PASS. The method fight_attack() has been implemented correctly.")
+        else:
+            print("Test FAIL. Check the method fight_attack().")
+
+
+
+# Checking whether this module is executed just itself alone.
+if __name__ == "__main__":
+    main()
+
+```
+
+
+# EOF
+```
+
+Clase Tipo de Arma: 
+```
+from enum import Enum
+
+
+class WeaponType(Enum):
+    """Python class to implement an enumeration for the attribute Weapon Type.
+
+    This Python class implements an enumeration for the attribute Weapon Type.
+
+    Syntax
+    ------
+      obj = WeaponType.Enum
+
+    Parameters
+    ----------
+
+    Returns
+    -------
+      obj Python object output parameter that represents an instance
+          of the class WeaponType.
+
+    Attributes
+    ----------
+
+    Example
+    -------
+      >>> from weapon_type import WeaponType
+      >>> obj_WeaponType = WeaponType.Boxer
+    """
+    PUNCH = 2
+    KICK = 4
+    ELBOW = 6
+    HEADBUTT = 10
+
+    def __str__(self):
+        return self.name
+
+    @staticmethod
+    def from_str(str_weapon_type):
+        """Method to obtain a Enum from a String.
+
+        This method is used to generate a Enum based on a String.
+
+        Syntax
+        ------
+          [ ] = from_str(str_weapon_type)
+
+        Parameters
+        ----------
+          str_weapon_type String String that represents a Weapon Type.
+
+        Returns
+        -------
+          Null .
+
+        Example
+        -------
+          >>> weapon_type.from_str("punch")
+        """
+        str_weapon_type = str_weapon_type.lower()
+        if str_weapon_type == 'punch':
+            return WeaponType.PUNCH
+        elif str_weapon_type == 'kick':
+            return WeaponType.KICK
+        elif str_weapon_type == 'elbow':
+            return WeaponType.ELBOW
+        elif str_weapon_type == 'headbutt':
+            return WeaponType.HEADBUTT
+        else:
+            raise TypeError("The str " + str_weapon_type + " does not correspond with a warrior Type")
+
+
+def main():
+    """Function main of the module.
+
+    The function main of this module is used to test the Class WeaponType.
+
+    Syntax
+    ------
+      [ ] = main()
+
+    Parameters
+    ----------
+      Null .
+
+    Returns
+    -------
+      Null .
+
+    Example
+    -------
+      >>> main()
+    """
+
+    print("=================================================================.")
+    print("Test Case 1: Check Class WeaponType - Name.")
+    print("=================================================================.")
+
+    if isinstance(WeaponType.PUNCH, WeaponType):
+        print("Test PASS. The enum for Punch has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if isinstance(WeaponType.KICK, WeaponType):
+        print("Test PASS. The enum for Kick has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if isinstance(WeaponType.ELBOW, WeaponType):
+        print("Test PASS. The enum for Elbow has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if isinstance(WeaponType.HEADBUTT, WeaponType):
+        print("Test PASS. The enum for Head Butt has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    print("=================================================================.")
+    print("Test Case 2: Check Class WeaponType - Value.")
+    print("=================================================================.")
+
+    if WeaponType.PUNCH.value == 2:
+        print("Test PASS. The enum for Punch has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if WeaponType.KICK.value == 4:
+        print("Test PASS. The enum for Kick has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if WeaponType.ELBOW.value == 6:
+        print("Test PASS. The enum for Elbow has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+    if WeaponType.HEADBUTT.value == 10:
+        print("Test PASS. The enum for Head Butt has been correctly set.")
+    else:
+        print("Test FAIL. Check the method __init__().")
+
+
+# Checking whether this module is executed just itself alone.
+if __name__ == "__main__":
+    main()
+
+
+```
