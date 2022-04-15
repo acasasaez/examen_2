@@ -1,43 +1,40 @@
 class Pokemon():
-    """Python class to implement a basic version of a Pokemon of the game.
 
-    This Python class implements the basic version of a Pokemon of the game.
-
-    Syntax
-    ------
-      obj = Pokemon(id, pokemon_name, weapon_type, health_points,
-                   attack_rating, defense_rating)
-
-    Parameters
-    ----------
-      [in] id ID of the Pokemon.
-      [in] pokemon_name Name of the Pokemon.
-      [in] weapon_type Type of weapon that carries out the Pokemon.
-      [in] health_points Points of health that the Pokemon has.
-      [in] attack_rating Attack rating of the Pokemon.
-      [in] defense_rating Defense rating of the Pokemon.
-
-    Returns
-    -------
-      obj Python object output parameter that represents an instance
-          of the class Pokemon.
-
-    Attributes
-    ----------
-
-    Example
-    -------
-      >>> from pokemon import Pokemon
-      >>> from weapon_type import WeaponType
-      >>> obj_Pokemon = Pokemon(1, "Bulbasaur", WeaponType.PUNCH, 100, 7, 10)
-    """
     def __init__(self, id, pokemon_name, weapon_type, health_point, attack_rating,  defense_rating):
         self.id = id 
-        self.pokemon_name = pokemon_name
-        self.weapon_type = weapon_type
-        self.health_point = health_point
-        self.attack_rating = attack_rating
-        self.defense_rating = defense_rating
+        if isinstance(pokemon_name, str):
+            self._pokemon_name = pokemon_name
+        else:
+            raise TypeError("pokemon_name es un parámetro tipo Str.")
+
+        if isinstance(weapon_type, WeaponType):
+            self._weapon_type = weapon_type
+        else:
+            raise TypeError("weapon_type es un parámetro tipo WeaponType.")
+
+        if isinstance(health_point, int):
+            if 1 <= health_point <= 100:
+                self._health_points = health_point
+            else:
+                raise ValueError(" health_point debeser superir a  0 y menor o igual a 100.")
+        else:
+            raise TypeError("health_point debe ser un parámetro tipo Int.")
+
+        if isinstance(attack_rating, int):
+            if 1 <= attack_rating <= 10:
+                self._attack_rating = attack_rating
+            else:
+                raise ValueError(" attack_rating debeser superior a 0 e inferior o igual a 10.")
+        else:
+            raise TypeError("attack_rating es un parámetro tipo Int.")
+
+        if isinstance(defense_rating, int):
+            if 1 <= defense_rating <= 10:
+                self._defense_rating = defense_rating
+            else:
+                raise ValueError(" defense_rating debe ser superior 0 y menor o igual a  10.")
+        else:
+            raise TypeError(" defense_rating es un parámtro tipo Int.")
     def show(self): 
         print ("El nombre del pokemon es: ", self.pokemon_name)
         print("El id del pokemon es:", self.id)
@@ -53,27 +50,50 @@ class Pokemon():
     def get_name(self):
         return self.pokemon_name
     def set_name(self, pokemon_name):
-        self.pokemon_name =pokemon_name
+        if isinstance(pokemon_name, str):
+            self._pokemon_name = pokemon_name
+        else:
+            raise TypeError("pokemon_name es un parámetro tipo Str.")
 
     def get_weapon_type(self):
         return self.weapon_type
     def set_weapon_type(self, weapon_type):
-        self.weapon_type = weapon_type
+        if isinstance(weapon_type, WeaponType):
+            self._weapon_type = weapon_type
+        else:
+            raise TypeError("weapon_type es un parámetro tipo WeaponType.")
 
     def get_health_point (self):
         return self.health_point
     def set_health_point(self, health_point):
-        self.health_point = health_point
-
+        if isinstance(health_point, int):
+            if 1 <= health_point <= 100:
+                self._health_points = health_point
+            else:
+                raise ValueError(" health_point debeser superir a  0 y menor o igual a 100.")
+        else:
+            raise TypeError("health_point debe ser un parámetro tipo Int.")
     def get_attack_rating(self):
         return self.attack_rating
     def set_attack_rating(self, attack_rating):
-        self.attack_rating = attack_rating
+        if isinstance(attack_rating, int):
+            if 1 <= attack_rating <= 10:
+                self._attack_rating = attack_rating
+            else:
+                raise ValueError(" attack_rating debeser superior a 0 e inferior o igual a 10.")
+        else:
+            raise TypeError("attack_rating es un parámetro tipo Int.")
 
     def get_defense_rating(self):
         return self.defense_rating
     def set_defense_rating(self, defense_rating):
-        self.defense_rating = defense_rating
+        if isinstance(defense_rating, int):
+            if 1 <= defense_rating <= 10:
+                self._defense_rating = defense_rating
+            else:
+                raise ValueError(" defense_rating debe ser superior 0 y menor o igual a  10.")
+        else:
+            raise TypeError(" defense_rating es un parámtro tipo Int.")
     
     
     def is_alive (self):
