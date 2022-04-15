@@ -4,39 +4,21 @@ from pokemon.pokemon_clase import Pokemon
 class PokemonWater(Pokemon):
     def __init__():
         super().__init__()
-    """Python class to implement a basic version of a Pokemon of the game.
-
-    This Python class implements the basic version of a Pokemon of the game.
-
-    Syntax
-    ------
-      obj = PokemonWater(id, pokemon_name, weapon_type, health_points,
-                         attack_rating, defense_rating)
-
-    Parameters
-    ----------
-      [in] id ID of the Pokemon.
-      [in] pokemon_name Name of the Pokemon.
-      [in] weapon_type Type of weapon that carries out the Pokemon.
-      [in] health_points Points of health that the Pokemon has.
-      [in] attack_rating Attack rating of the Pokemon.
-      [in] defense_rating Defense rating of the Pokemon.
-
-    Returns
-    -------
-      obj Python object output parameter that represents an instance
-          of the class Pokemon.
-
-    Attributes
-    ----------
-
-    Example
-    -------
-      >>> from pokemon import Pokemon
-      >>> from weapon_type import WeaponType
-      >>> obj_Pokemon = PokemonWater(1, "Squirtle", WeaponType.PUNCH, 100, 7, 10)
-    """
-
+        if isinstance(defense_rating, int):
+            if 11 <= defense_rating <= 20:
+                self._defense_rating = defense_rating
+            else:
+                raise ValueError(" defense_rating debe ser superior o igual a 11 y menor o igual a  20.")
+        else:
+            raise TypeError(" defense_rating es un parámtro tipo Int.")
+    def set_defense_rating(self, defense_rating):
+        if isinstance(defense_rating, int):
+            if 11 <= defense_rating <= 20:
+                self._defense_rating = defense_rating
+            else:
+                raise ValueError(" defense_rating debe ser superior o igual a 11 y menor o igual a  20.")
+        else:
+            raise TypeError(" defense_rating es un parámtro tipo Int.")
 
 def main():
     """Function main of the module.
